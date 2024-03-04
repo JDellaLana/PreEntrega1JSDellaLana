@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Guitarras</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Tienda de Guitarras</h1>
+        <p>Bienvenido a nuestra tienda de guitarras. ¡Encuentra la guitarra perfecta para ti!</p>
+    </header>
+
+    <div class="formulario">
+        <form id="guitarForm">
+            <label for="cantidadInput">Cantidad de guitarras:</label>
+            <input type="number" id="cantidadInput" min="1" required>
+            <br>
+            <label for="tipoSelect">Tipo de guitarra:</label>
+            <select id="tipoSelect" required>
+                <option value="acustica">Acústica</option>
+                <option value="electrica">Eléctrica</option>
+                <option value="clasica">Clásica</option>
+            </select>
+            <br>
+            <label for="marcaInput">Marca de guitarra:</label>
+            <input type="text" id="marcaInput" required>
+            <br>
+            <button type="submit">Calcular Precio</button>
+        </form>
+    </div>
+
+    <div id="resultadoContainer"></div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
