@@ -1,4 +1,4 @@
-// Función para cargar datos usando Fetch
+// funcion para cargar datos con Fetch
 async function cargarDatosConFetch() {
     try {
         const response = await fetch('datos.json');
@@ -12,7 +12,7 @@ async function cargarDatosConFetch() {
     }
 }
 
-// Función para cargar datos usando Axios
+// funcion para cargar datos con Axios
 async function cargarDatosConAxios() {
     try {
         const response = await axios.get('datos.json');
@@ -22,7 +22,7 @@ async function cargarDatosConAxios() {
     }
 }
 
-// Función para obtener las marcas disponibles según el tipo de guitarra seleccionado
+// obtener marcas disponibles segun el tipo de guitarra
 async function obtenerMarcasDisponibles(tipoSeleccionado) {
     try {
         const response = await fetch('datos.json');
@@ -37,19 +37,19 @@ async function obtenerMarcasDisponibles(tipoSeleccionado) {
     }
 }
 
-// Función para actualizar las opciones de marca en el formulario
+
 async function actualizarOpcionesMarca() {
     const tipoSelect = document.getElementById('tipoSelect');
     const marcaSelect = document.getElementById('marcaSelect');
     const tipoSeleccionado = tipoSelect.value;
 
-    // Obtener las marcas disponibles utilizando fetch
+    // marcas disponibles usando Fetch
     const marcasDisponibles = await obtenerMarcasDisponibles(tipoSeleccionado);
 
-    // Limpiar opciones anteriores
+    
     marcaSelect.innerHTML = '';
 
-    // Agregar nuevas opciones
+    
     marcasDisponibles.forEach(marca => {
         const option = document.createElement('option');
         option.value = marca;
@@ -121,10 +121,10 @@ window.addEventListener('load', function() {
 
 document.getElementById('tipoSelect').addEventListener('change', actualizarOpcionesMarca);
 
-// Al cargar la página, actualizar las opciones de marca
+
 window.addEventListener('load', actualizarOpcionesMarca);
 
-// Agregar evento para actualizar las opciones de marca cuando se cambie el tipo de guitarra
+// evento para actualizar las opciones de marca cuando se cambie el tipo de guitarra
 document.getElementById('tipoSelect').addEventListener('change', actualizarOpcionesMarca);
 
 // Función para cargar datos usando Fetch
@@ -141,7 +141,7 @@ async function cargarDatosConFetch() {
     }
 }
 
-// Función para cargar datos usando Axios
+// función para cargar datos usando Axios
 async function cargarDatosConAxios() {
     try {
         const response = await axios.get('datos.json');
@@ -151,8 +151,8 @@ async function cargarDatosConAxios() {
     }
 }
 
-// Agregar evento al botón de cargar datos con Fetch
+
 document.getElementById('fetchButton').addEventListener('click', cargarDatosConFetch);
 
-// Agregar evento al botón de cargar datos con Axios
+
 document.getElementById('axiosButton').addEventListener('click', cargarDatosConAxios);
