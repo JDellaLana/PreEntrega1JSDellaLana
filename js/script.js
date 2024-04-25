@@ -1,24 +1,55 @@
-function obtenerMarcasDisponibles(tipoSeleccionado) {
-    const marcas = {
-        acustica: ['fender', 'martin', 'taylor'],
-        electrica: ['gibson', 'fender', 'ibanez'],
-        clasica: ['yamaha', 'cordoba', 'alhambra']
-    };
-    
-    return marcas[tipoSeleccionado] || [];
+// Función para cargar datos usando Fetch
+async function cargarDatosConFetch() {
+    try {
+        const response = await fetch('datos.json');
+        if (!response.ok) {
+            throw new Error('Error al cargar los datos');
+        }
+        const data = await response.json();
+        console.log('Datos cargados con Fetch:', data);
+    } catch (error) {
+        console.error(error);
+    }
 }
 
+// Función para cargar datos usando Axios
+async function cargarDatosConAxios() {
+    try {
+        const response = await axios.get('datos.json');
+        console.log('Datos cargados con Axios:', response.data);
+    } catch (error) {
+        console.error(error);
+    }
+}
 
-function actualizarOpcionesMarca() {
+// Función para obtener las marcas disponibles según el tipo de guitarra seleccionado
+async function obtenerMarcasDisponibles(tipoSeleccionado) {
+    try {
+        const response = await fetch('datos.json');
+        if (!response.ok) {
+            throw new Error('Error al cargar los datos');
+        }
+        const data = await response.json();
+        return data[tipoSeleccionado] || [];
+    } catch (error) {
+        console.error(error);
+        return [];
+    }
+}
+
+// Función para actualizar las opciones de marca en el formulario
+async function actualizarOpcionesMarca() {
     const tipoSelect = document.getElementById('tipoSelect');
     const marcaSelect = document.getElementById('marcaSelect');
     const tipoSeleccionado = tipoSelect.value;
-    const marcasDisponibles = obtenerMarcasDisponibles(tipoSeleccionado);
 
-    // limpiar opciones anteriores
+    // Obtener las marcas disponibles utilizando fetch
+    const marcasDisponibles = await obtenerMarcasDisponibles(tipoSeleccionado);
+
+    // Limpiar opciones anteriores
     marcaSelect.innerHTML = '';
 
-    // nuevas opciones
+    // Agregar nuevas opciones
     marcasDisponibles.forEach(marca => {
         const option = document.createElement('option');
         option.value = marca;
@@ -90,5 +121,38 @@ window.addEventListener('load', function() {
 
 document.getElementById('tipoSelect').addEventListener('change', actualizarOpcionesMarca);
 
+// Al cargar la página, actualizar las opciones de marca
+window.addEventListener('load', actualizarOpcionesMarca);
 
+// Agregar evento para actualizar las opciones de marca cuando se cambie el tipo de guitarra
+document.getElementById('tipoSelect').addEventListener('change', actualizarOpcionesMarca);
 
+// Función para cargar datos usando Fetch
+async function cargarDatosConFetch() {
+    try {
+        const response = await fetch('datos.json');
+        if (!response.ok) {
+            throw new Error('Error al cargar los datos');
+        }
+        const data = await response.json();
+        console.log('Datos cargados con Fetch:', data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+// Función para cargar datos usando Axios
+async function cargarDatosConAxios() {
+    try {
+        const response = await axios.get('datos.json');
+        console.log('Datos cargados con Axios:', response.data);
+    } catch (error) {
+        console.error(error);
+    }
+}
+
+// Agregar evento al botón de cargar datos con Fetch
+document.getElementById('fetchButton').addEventListener('click', cargarDatosConFetch);
+
+// Agregar evento al botón de cargar datos con Axios
+document.getElementById('axiosButton').addEventListener('click', cargarDatosConAxios);

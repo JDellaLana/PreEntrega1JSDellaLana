@@ -1,0 +1,6 @@
+{
+    "acustica": ["fender", "martin", "taylor"],
+    "electrica": ["gibson", "fender", "ibanez"],
+    "clasica": ["yamaha", "cordoba", "alhambra"]
+  }
+  
