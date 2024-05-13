@@ -1,3 +1,12 @@
+import * as dateFns from 'date-fns';
+
+
+function obtenerFechaActual () {
+    const fechaActual = new Date ();
+    const FechaFormateada = dateFns.format (fechaActual, 'dd/MM/yyyy' ) ;
+    return FechaFormateada;
+}
+
 // funcion para cargar datos con Fetch
 async function cargarDatosConFetch() {
     try {
@@ -101,6 +110,10 @@ document.getElementById('guitarForm').addEventListener('submit', function(event)
 
 
 window.addEventListener('load', actualizarOpcionesMarca);
+
+
+
+
 
 
 window.addEventListener('load', function() {
